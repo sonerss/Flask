@@ -1,22 +1,18 @@
-#-----------------------------------------------------------------
-# Author : SonerSezgin
-# Date : 2023-03-11
-# Aim : Flask BluePrint Training
-#-----------------------------------------------------------------
-
-from flask import Flask,render_template
+from flask import Flask
+import config
+from admin.routes import admin
+from sites.routes import sites
 
 app = Flask(__name__)
+app.register_blueprint(admin,url_prefix='/admin')
+app.register_blueprint(sites,url_prefix='/sites')
 
-@app.route("/")
-def hello_world():
-    return render_template('page1.html')
 
-@app.route('/page2')
-def sayfa2():
-    return render_template('page2.html')
-
+@app.route('/')
+def test():
+    return 'main page'
 
 if __name__ == '__main__':
+    app.secret_key = config.BaseConfig.SECRET_KEY
     app.run(debug=True)
 
