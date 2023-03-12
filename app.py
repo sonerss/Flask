@@ -7,6 +7,7 @@ app = Flask(__name__)
 app.register_blueprint(admin,url_prefix='/admin')
 app.register_blueprint(sites,url_prefix='/sites')
 
+print('aaa')
 
 @app.route('/')
 def test():
